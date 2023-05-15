@@ -1,0 +1,459 @@
+html {
+    height: 100%;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+html, body{
+  scroll-snap-type: block proximity;
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+:root{
+    --gradient-1: linear-gradient(320deg, #fc2169, #e221ff);
+    --gradient-2: linear-gradient(320deg,#22fcb0,#2181fa);
+    --primary-color-1: #2C2C34;
+    --primary-color-2: #2191FB;
+    --primary-color-3: #FF6B6B;
+    --primary-color-4: #2E3138;  
+    --primary-color-5: #44CF6C;
+    --box-shadow: 0.5rem 0.5rem 0.5rem black;
+}
+
+nav{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    transition: top 0.3s;
+    background-color: black;
+}
+
+.logo{
+  width: 50vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo h1{
+  margin-left: 2vw;
+  font-size: 3em;
+  margin: 0 2rem;
+  /* Flowing text starts */
+  --bg-size: 400%;
+  --color-one: #22fcb0;
+  --color-two: #2181fa;
+  background: linear-gradient(
+                45deg,
+                var(--color-one),
+                var(--color-two),
+                var(--color-one)
+              ) 0 0 / var(--bg-size) 100%;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: move-bg 6s infinite linear;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .logo {
+    animation: move-bg 12s linear infinite;
+  }
+  @keyframes move-bg {
+    to {
+      background-position: var(--bg-size) 0;
+    }
+  }
+}
+
+/* Flowing text ends */
+
+/* underline styling start and color transition*/ 
+
+.menu {
+  margin: 0;
+  padding: 0;
+}
+
+.menu .menu-item-container {
+  margin: 0 2rem;
+}
+
+
+/* color transition */
+ hover{
+  margin: 0 2rem;
+}
+
+ a {
+  color: white;
+  text-align: center;
+  
+  text-decoration: none;  
+  display: block;
+  position: relative;
+  padding: 0.2em 0;
+  
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.1em;
+  background: var(--gradient-2);
+  opacity: 0;
+  transition: opacity 300ms, transform 300ms;
+}
+
+a:hover::after,
+a:focus::after {
+  opacity: 1;
+  transform: translate3d(0, 0.2em, 0);
+}
+
+a {
+  overflow: hidden;
+}
+
+a::after {
+  transform-origin: bottom left;
+  transform: scaleX(0);
+}
+
+a:hover::after, a:focus::after{
+  transform: scaleX(1);
+}
+
+/* underline styling end */ 
+
+.menu{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 50vw;
+    margin-right: 2vw;
+}
+
+.menu-item{
+    display: inline-block;
+    margin: 0 1vw 0 1vw;
+    cursor: pointer;
+    color: white;
+    font-size: 2em;
+}
+
+section{
+    height: 100vh;
+}
+
+
+.section-home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    
+}
+
+.section-home img{
+    border-radius: 2rem;
+    width: 25vw;
+}
+
+.section-about .about-main{
+  color:white;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.section-about .about-description{
+  color:white;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 0.2em;
+}
+
+.section-about .about-slogan{
+  color:white;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 1em;
+}
+
+.section-about .aboutCloud-img{
+  width: 30vw;
+  margin-top: 6em;
+  
+}
+
+.section-about{
+    background: var(--gradient-2);
+    display: flex;
+    justify-content: top;
+    align-items: center;
+    flex-direction: column;
+}
+
+.about-us {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.center{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 25%;
+}
+
+.about-main{
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 0;
+}
+
+.a-paragraph-h{
+    display: flex;
+    justify-content: center;
+}
+.a-paragraph-text{
+    display: flex;
+    justify-content: center;
+
+}
+
+
+.section-about img{
+    border-radius: 2rem;
+    width: 50vw;
+}
+
+/* Section Team */
+.section-team {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250vh;
+}
+
+.team-members-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    width: 95vw;
+    padding-top: 25vh;
+}
+
+.about-us h1 {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin-top: 1em;
+}
+
+.about-us{
+  height: 100%;
+  width: 100%;
+}
+
+.team-member {
+    text-align: center;
+    height: 100vh;
+    width: 25vw;
+}
+
+.person-img {
+    height: 70vh;
+    margin-bottom: 0vh;
+}
+
+.name {
+    font-size: 5vh;
+    margin-top: 0vh;
+    color: white;
+}
+
+.description {
+    font-size: 2vh;
+    margin-top: 0vh;
+    color: white;
+}
+
+.section-projects{  
+  background: var(--gradient-2);
+  
+  height: 100vh;
+}
+
+.section-projects .slogan-container{
+  padding-top: 2rem;
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.section-projects .project-container{
+  margin-top: 10vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: space-evently;
+}
+
+.project{
+  position: relative;
+  width: 20rem;
+  height: 30rem;
+  border-radius: 0.5rem;
+  transform-style: preserve-3d;
+  transition: all 1s ease;
+}
+
+.project:hover{
+  transform: rotateY(180deg);
+}
+.project p{
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.project .front{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  backface-visibility: hidden;
+  overflow: hidden;
+  background-color: white;
+  text-align: center;  
+  box-shadow: 0.5rem 0.5rem 0.5rem black;
+}
+
+.project .back{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  backface-visibility: hidden;
+  background-color: white;
+  text-align: center;
+  box-shadow: 0.5rem 0.5rem 0.5rem black;
+  
+  transform: rotateY(180deg);
+}
+
+.back button{
+  position: relative;
+  display: default;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 1rem;
+}
+
+.back button:hover{
+	border-style: solid;
+	border-color: var(--gradient-2);
+}
+
+.back a{
+	color: black;
+	font-size: 1.5rem;
+}
+
+.b1{
+  margin-top: 1rem;
+}
+.b2 {
+  margin-top: 1rem;
+}
+
+.project .front .image-1{
+  padding-top: 2.5rem;
+  width: 50%;
+  height: auto;
+}
+
+.project .front .image-2{
+  padding-top: 2.5rem;
+  width: 50%;
+  height: auto;
+  padding-bottom: 2rem;
+}
+
+.back .project-list{
+  font-size: 1rem;
+  padding-top: 1rem;
+}
+
+/* Style for both "About Us" and "Members" headings */
+.about-us h1,
+.section-about h1,
+.slogan-container h1{
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: .2em;
+}
+
+/* Style for team member names */
+.team-member h1.name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Style for team member descriptions */
+.team-member p.description {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+/*
+canvas-envelope{
+    
+}
+*/
+
+/* this for the animated rectangle*/
+canvas {
+    width: 50vw !important;
+    height: 50vh !important;
+    position: absolute;
+    top: 25vh;
+    left: 25vw;
+    --angle: 0deg;
+  /* … */
+    border: 5px solid;
+  border-image-slice: 1;
+  border-image: linear-gradient(var(--angle), #22fcb0,#2181fa) 1;
+  animation: 10s rotate linear infinite;
+}
+
+
+@keyframes rotate {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}

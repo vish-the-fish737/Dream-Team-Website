@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Dream Team</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body class="main-content">
+    <nav id="nav">
+        <div class="logo">
+            <h1>Dream Team</h1>
+        </div>
+        <ul class="menu">
+            <li class="menu-item-container">
+                <a href=#0 class="menu-item" data-id="home">Home</a>
+            </li>
+            <li class="menu-item-container">
+                <a href=#0 class="menu-item" data-id="about">About</a>
+            </li>
+            <li class="menu-item-container">
+                <a href=#0 class="menu-item" data-id="team"">Team</a>
+          </li>
+          <li class=" menu-item-container">
+                    <a href=#0 class="menu-item" data-id="projects">Projects</a>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <section class="section-home active" id="home">
+            <img src="img/wireframe_cloud.PNG" />
+            <script src="three.min.js"></script>
+            <script src="postprocessing.min.js"></script>
+            <div class="canvas-envelope">
+                <script>
+                    let scene, camera, cloudParticles = [], composer;
+
+                    function init() {
+                        scene = new THREE.Scene();
+                        camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+                        camera.position.z = 1;
+                        camera.rotation.x = 1.16;
+                        camera.rotation.y = -0.12;
+                        camera.rotation.z = 0.27;
+
+                        let ambient = new THREE.AmbientLight(0x2191FB);
+                        scene.add(ambient);
+
+                        let directionalLight = new THREE.DirectionalLight(0xFF6B6B);
+                        directionalLight.position.set(0, 0, 1);
+                        scene.add(directionalLight);
+
+                        let orangeLight = new THREE.PointLight(0x2181fa, 50, 350, 1.7);
+                        orangeLight.position.set(200, 300, 100);
+                        scene.add(orangeLight);
+                        let redLight = new THREE.PointLight(0x00b6ff, 50, 250, 1.7);
+                        redLight.position.set(100, 300, 100);
+                        scene.add(redLight);
+                        let blueLight = new THREE.PointLight(0x00deed, 50, 350, 1.7);
+                        blueLight.position.set(300, 300, 200);
+                        scene.add(blueLight);
+
+                        renderer = new THREE.WebGLRenderer();
+                        renderer.setSize(window.innerWidth, window.innerHeight);
+                        scene.fog = new THREE.FogExp2(0x03544e, 0.001);
+                        renderer.setClearColor(scene.fog.color);
+                        document.body.appendChild(renderer.domElement);
+
+                        let loader = new THREE.TextureLoader();
+                        loader.load("cloud.png", function (texture) {
+                            cloudGeo = new THREE.PlaneBufferGeometry(500, 500);
+                            cloudMaterial = new THREE.MeshLambertMaterial({
+                                map: texture,
+                                transparent: true
+                            });
+
+                            for (let p = 0; p < 50; p++) {
+                                let cloud = new THREE.Mesh(cloudGeo, cloudMaterial);
+                                cloud.position.set(
+                                    Math.random() * 800 - 400,
+                                    200,
+                                    Math.random() * 500 - 500
+                                );
+                                cloud.rotation.x = 1.16;
+                                cloud.rotation.y = -0.12;
+                                cloud.rotation.z = Math.random() * 2 * Math.PI;
+                                cloud.material.opacity = 0.55;
+                                cloudParticles.push(cloud);
+                                scene.add(cloud);
+                            }
+                        });
+                        loader.load("stars.jpg", function (texture) {
+
+                            const textureEffect = new POSTPROCESSING.TextureEffect({
+                                blendFunction: POSTPROCESSING.BlendFunction.COLOR_DODGE,
+                                texture: texture
+                            });
+                            textureEffect.blendMode.opacity.value = 0.2;
+
+                            const bloomEffect = new POSTPROCESSING.BloomEffect({
+                                blendFunction: POSTPROCESSING.BlendFunction.COLOR_DODGE,
+                                kernelSize: POSTPROCESSING.KernelSize.SMALL,
+                                useLuminanceFilter: true,
+                                luminanceThreshold: 0.3,
+                                luminanceSmoothing: 0.75
+                            });
+                            bloomEffect.blendMode.opacity.value = 1.5;
+
+                            let effectPass = new POSTPROCESSING.EffectPass(
+                                camera,
+                                bloomEffect,
+                                textureEffect
+                            );
+                            effectPass.renderToScreen = true;
+
+                            composer = new POSTPROCESSING.EffectComposer(renderer);
+                            composer.addPass(new POSTPROCESSING.RenderPass(scene, camera));
+                            composer.addPass(effectPass);
+
+                            window.addEventListener("resize", onWindowResize, false);
+                            render();
+                        });
+                    }
+                    function onWindowResize() {
+                        camera.aspect = window.innerWidth / window.innerHeight;
+                        camera.updateProjectionMatrix();
+                        renderer.setSize(window.innerWidth, window.innerHeight);
+                    }
+                    function render() {
+                        cloudParticles.forEach(p => {
+                            p.rotation.z -= 0.001;
+                        });
+                        composer.render(0.1);
+                        requestAnimationFrame(render);
+                    }
+                    init();
+                </script>
+            </div>
+        </section>
+
+        <section class="section-about" id="about">
+            <div class="about-main">
+                <h1 class="section-heading">About Us</h1>
+            </div>
+            <div class="about-description">
+                <p>Meet our Code[Coogs] Dream Team! Together, we developed an impressive website by combining our skills
+                    in HTML, CSS, UX design, and project management. The result is a professional and engaging website.
+                </p>
+            </div>
+            <img src="img/cloudforAbout.jpg" class="aboutCloud-img">
+        </section>
+
+        <section class="section-team" id="team">
+    <div class="about-us">
+        <h1 class="section-heading">Members</h1>
+        <div class="team-members-row">
+            <div class="team-member">
+                <img src="img/Vishu_DreamTeam.gif" class="person-img">
+                <h1 class="name">Vishu</h1>
+                <p class="description"></p>
+            </div>
+            <div class="team-member">
+                <img src="img/Dinh_DreamTeam.gif" class="person-img">
+                <h1 class="name">Dinh</h1>
+                <p class="description"></p>
+            </div>
+            <div class="team-member">
+                <img src="img/Jorge_DreamTeam.gif" class="person-img">
+                <h1 class="name">Jorge</h1>
+                <p class="description"></p>
+            </div>
+        </div>
+        <div class="team-members-row">
+            <div class="team-member">
+                <img src="img/Karthic_DreamTeam.gif" class="person-img">
+                <h1 class="name">Karthik</h1>
+                <p class="description"></p>
+            </div>
+            <div class="team-member">
+                <img src="img/Richer_DreamTeam.gif" class="person-img">
+                <h1 class="name">Richer</h1>
+                <p class="description"></p>
+            </div>
+            <div class="team-member">
+                <img src="img/Sebastian_DreamTeam.gif" class="person-img">
+                <h1 class="name">Sebastian</h1>
+                <p class="description"></p>
+            </div>
+        </div>
+        <h1>Not Pictured: Yury and Fatema</h1>
+    </div>
+</section>
+
+        <section class="section-projects" id="projects">
+            <div class="slogan-container">
+                <h1 class="section-heading">Don't Just Dream it, Create It</h1>
+            </div>
+            <div class="project-container">
+                <div class="project">
+                    <div class="front">
+                        <img class="image-1" src="img/UMeetLogo.png">
+                        <div class="content">
+                            <h2>UniMeet</h2>
+                            <p>A mobile application that allows users to meet other students on their college campus who
+                                are enrolled in similar classes, clubs, or have like-minded hobbies</p>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <ul class="project-list">
+                        <h2>Technologies Used:</h2>
+                        <li><i>Java</i></li>
+                        <li><i>XML</i></li>
+                        <li><i>Android Studio</i></li>
+                        <li><i>Firebase</i></li>
+                        <li><i>Uizard</i></li>
+                        </ul>
+                        <ul class="project-list">
+                        <h2>Developers:</h2>
+                        <li><i>Team Lead: Jake Burger</i></li>
+                        <li><i>Team Lead: Justine Tran</i></li>
+                        <li><i>Richer Duong</i></li>
+                        <li><i>Karthik Kallakuri</i></li>
+                        <li><i>Vicky Nguyen</i></li>
+                        <li><i>Jorge Umanzor</i></li>
+                        <li><i>Saalihah Latiff</i></li>
+                        <li><i>Madison Emshousen</i></li>
+                        </ul>
+                       <button class="b1"><a class="menu-item" 
+href="https://github.com/jaykeburger/UniMeet">Github</a></button>
+                    </div>
+                </div>
+                <div class="project">
+                    <div class="front">
+                        <img class="image-2" src="img/cloudforAbout.jpg">
+                        <div class="content">
+                            <h2>Dream Team Website</h2>
+                            <p>Our website created to showcase our skills</p>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <ul class="project-list">
+                        <h2>Technologies Used:</h2>
+                        <li><i>HTML</i></li>
+                        <li><i>CSS</i></li>
+                        <li><i>JavaScript</i></li>
+                        <li><i>Figma</i></li>
+                        </ul>
+                        <ul class="project-list">
+                        <h2>Developers:</h2>
+                        <li><i>Team Lead: Vishu Kodikanti</i></li>
+                        <li><i>Team Lead: Yury Ionov</i></li>
+                        <li><i>Richer Duong</i></li>
+                        <li><i>Jorge Umanzor</i></li>
+                        <li><i>Fatema Meem</i></li>
+                        <li><i>Sebastian Gutierrez</i></li>
+                        <li><i>Karthik Kallakuri</i></li>
+                        <li><i>Dinh Thinh Ngo</i></li>
+                        </ul>
+                        <button class="b2"><a class="menu-item" href="https://replit.com/@jorgeu/Dream-Team-Website-Prototype#index.html">Source Code</a></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="https://replit.com/public/js/replit-badge-v2.js" theme="dark" position="bottom-right"></script>
+</body>
+
+</html>

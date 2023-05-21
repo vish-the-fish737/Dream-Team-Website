@@ -35,6 +35,7 @@ nav{
     display: flex;
     transition: top 0.3s;
     background-color: black;
+    z-index: 1;
 }
 
 .logo{
@@ -247,7 +248,7 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 250vh;
+    height: 350vh;
 }
 
 .team-members-row {
@@ -279,7 +280,7 @@ section{
 }
 
 .person-img {
-    height: 70vh;
+    width: 100%;
     margin-bottom: 0vh;
 }
 
@@ -398,7 +399,7 @@ section{
 }
 
 .back .project-list{
-  font-size: 1rem;
+  font-size: 0.75rem;
   padding-top: 1rem;
 }
 

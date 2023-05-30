@@ -9,7 +9,6 @@ html, body{
   scroll-snap-type: block proximity;
 }
 
-
 *{
     margin: 0;
     padding: 0;
@@ -28,28 +27,43 @@ html, body{
     --box-shadow: 0.5rem 0.5rem 0.5rem black;
 }
 
-nav{
-    position: fixed;
-    top: 0;
-    width: 100%;
-    display: flex;
-    transition: top 0.3s;
-    background-color: black;
-    z-index: 1;
+section{
+  height: 100vh;
 }
 
-.logo{
-  width: 50vw;
-  justify-content: center;
+/* navigation bar section starts here */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  transition: top 0.3s;
+  background-color: black;
+  z-index: 1;
+}
+
+.desktop-nav {
+  display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-.logo h1{
-  margin-left: 2vw;
-  font-size: 3em;
-  margin: 0 2rem;
-  /* Flowing text starts */
-  --bg-size: 400%;
+.mobile-nav {
+  display: none;
+}
+
+.desktop-nav .logo { 
+  width: 50vw;
+  font-size: 2rem;
+  padding-left: 1rem;
+}
+
+/* Flowing text starts  */
+
+.desktop-nav  .logo h1{
+  font-size: 2rem;
+  --bg-size: 300%;
   --color-one: #22fcb0;
   --color-two: #2181fa;
   background: linear-gradient(
@@ -65,7 +79,7 @@ nav{
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .logo {
+  .desktop-nav .logo {
     animation: move-bg 12s linear infinite;
   }
   @keyframes move-bg {
@@ -74,236 +88,294 @@ nav{
     }
   }
 }
-
 /* Flowing text ends */
 
-/* underline styling start and color transition*/ 
+/* underline styling start and color transition start */ 
 
-.menu {
-  margin: 0;
-  padding: 0;
+.desktop-nav-list .nav-list{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 50vw;
+  padding: 0 1rem 0 1rem;
 }
 
-.menu .menu-item-container {
+.desktop-nav-list .nav-list .menu-item-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.desktop-nav .nav-list .menu-item-container hover{
   margin: 0 2rem;
 }
 
-
-/* color transition */
- hover{
-  margin: 0 2rem;
-}
-
- a {
+.desktop-nav .nav-list .menu-item-container a {
   color: white;
   text-align: center;
   
   text-decoration: none;  
   display: block;
   position: relative;
-  padding: 0.2em 0;
-  
+  padding: 0.2rem 0;
 }
 
-a::after {
+.desktop-nav .nav-list .menu-item-container a::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 0.1em;
+  height: 0.2rem;
   background: var(--gradient-2);
   opacity: 0;
   transition: opacity 300ms, transform 300ms;
 }
 
-a:hover::after,
-a:focus::after {
+.desktop-nav .nav-list .menu-item-container a:hover::after,
+.desktop-nav .nav-list .menu-item-container a:focus::after {
   opacity: 1;
-  transform: translate3d(0, 0.2em, 0);
+  transform: translate3d(0, 0.2rem, 0);
 }
 
-a {
+.desktop-nav .nav-list .menu-item-container a {
   overflow: hidden;
 }
 
-a::after {
+.desktop-nav .nav-list .menu-item-container a::after {
   transform-origin: bottom left;
   transform: scaleX(0);
 }
 
-a:hover::after, a:focus::after{
+.desktop-nav .nav-list .menu-item-container a:hover::after, 
+.desktop-nav .nav-list .menu-item-container a:focus::after{
   transform: scaleX(1);
 }
 
-/* underline styling end */ 
-
-.menu{
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    width: 50vw;
-    margin-right: 2vw;
+.desktop-nav .nav-list .menu-item-container .menu-item{
+  display: inline-block;
+  margin: 0 2vw 0 2vw;
+  cursor: pointer;
+  color: white;
+  font-size: 2rem;
 }
-
-.menu-item{
-    display: inline-block;
-    margin: 0 1vw 0 1vw;
-    cursor: pointer;
-    color: white;
-    font-size: 2em;
-}
-
-section{
-    height: 100vh;
-}
-
 
 .section-home{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
 }
 
-.section-home img{
-    border-radius: 2rem;
-    width: 25vw;
-}
+/* underline styling start and color transition end */
 
-.section-about .about-main{
-  color:white;
-  font-size: 3rem;
-  text-align: center;
-}
+@media (max-width: 768px){
 
-.section-about .about-description{
-  color:white;
-  text-align: center;
-  font-size: 30px;
-  margin-top: 0.2em;
-}
+  .desktop-nav {
+    display: none;
+  }
 
-.section-about .about-slogan{
-  color:white;
-  text-align: center;
-  font-size: 30px;
-  margin-top: 1em;
-}
+  .mobile-nav {
+    width: 100%;
+    display: grid;
+  }
 
-.section-about .aboutCloud-img{
-  width: 30vw;
-  margin-top: 6em;
+  /* Flowing text starts  */
   
+  .mobile-nav .logo h1{
+    text-align: center;
+    font-size: 2.5rem;
+    --bg-size: 300%;
+    --color-one: #22fcb0;
+    --color-two: #2181fa;
+    background: linear-gradient(
+                  45deg,
+                  var(--color-one),
+                  var(--color-two),
+                  var(--color-one)
+                ) 0 0 / var(--bg-size) 100%;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: move-bg 6s infinite linear;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .desktop-nav .logo {
+      animation: move-bg 12s linear infinite;
+    }
+    @keyframes move-bg {
+      to {
+        background-position: var(--bg-size) 0;
+      }
+    }
+  }
+
+  .mobile-nav-list {
+    display: none;
+    position: fixed;
+    background-color: black;
+    width: 50vw;
+    height: 100vh;
+    padding-top: 10vh;
+    transition: right 1s;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav-toggle:checked ~ nav {
+    display: block;
+  }
+
+  .nav-toggle-label {
+    padding: 1vw 0 0 2vw;
+    font-size: 1.5rem;
+    position: absolute;
+    color: white;
+  }
+
+  .nav-toggle-label span:after {
+    content: "\2630"; /* hamburger icon */
+    font-size: 2rem;
+    color: white;
+  }
+
+  #nav-toggle:checked ~ .nav-toggle-label span:after{
+    content: "\2715"; /* 'X' icon */
+    font-size: 2rem;
+    color: white;
+  }
+
+  .mobile-nav .mobile-nav-list .nav-list .menu-item-container .menu-item{
+    display: inline-block;
+    margin: 0 0 0 1rem;
+    padding: 1rem 0 1rem 0;
+    cursor: pointer;
+    color: white;
+    font-size: 3rem;
+  }
+
+  a {
+    text-decoration: none;
 }
+
+  a:hover {
+    text-decoration:none; 
+    cursor:pointer;  
+  }
+
+  .mobile-nav .mobile-nav-list .nav-list .menu-item-container .menu-item:focus {
+    font-weight: 1000;
+    font-size: 3.25rem;
+  }
+}
+
+/* navigation bar section ends here */
+
+/* section home ends here */
+
+/* section about starts here */
 
 .section-about{
-    background: var(--gradient-2);
-    display: flex;
-    justify-content: top;
-    align-items: center;
-    flex-direction: column;
+  background: var(--gradient-2);
+  display: flex;
+  justify-content: top;
+  align-items: center;
+  flex-direction: column;
 }
+
+.section-about img{
+  width: 70vw;
+  margin-top: 6rem;
+}
+
+.about-main{
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.about-description{
+  color:white;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* section about ends here */
+
+/* section team starts here */
 
 .about-us {
   display: flex;
   align-items: center;
   flex-direction: column;
-}
-
-.center{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 25%;
-}
-
-.about-main{
-    display: flex;
-    justify-content: center;
-    padding-top: 50px;
-    padding-bottom: 0;
-}
-
-.a-paragraph-h{
-    display: flex;
-    justify-content: center;
-}
-.a-paragraph-text{
-    display: flex;
-    justify-content: center;
-
-}
-
-
-.section-about img{
-    border-radius: 2rem;
-    width: 50vw;
-}
-
-/* Section Team */
-.section-team {
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 350vh;
-}
-
-.team-members-row {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100vh;
-    width: 95vw;
-    padding-top: 25vh;
-}
-
-.about-us h1 {
-  font-size: 30px;
-  font-weight: bold;
-  color: white;
-  text-align: center;
-  margin-top: 1em;
-}
-
-.about-us{
   height: 100%;
   width: 100%;
 }
 
+.about-us h1 {
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+
+.section-team {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 350vh;
+}
+
+.team-members-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+  width: 95vw;
+  margin-top: 5vh;
+  padding-top: 25vh;
+}
+
 .team-member {
-    text-align: center;
-    height: 100vh;
-    width: 25vw;
+  text-align: center;
+  height: 100vh;
+  width: 25vw;
 }
 
 .person-img {
-    width: 100%;
-    margin-bottom: 0vh;
+  width: 100%;
+  margin-bottom: 0vh;
 }
 
 .name {
-    font-size: 5vh;
-    margin-top: 0vh;
-    color: white;
+  font-size: 5vh;
+  margin-top: 0vh;
+  color: white;
 }
 
 .description {
-    font-size: 2vh;
-    margin-top: 0vh;
-    color: white;
+  font-size: 2vh;
+  margin-top: 0vh;
+  color: white;
 }
+
+/* section team ends here */
+
+/* section team starts here */
 
 .section-projects{  
   background: var(--gradient-2);
-  
   height: 100vh;
 }
 
-.section-projects .slogan-container{
-  padding-top: 2rem;
+.slogan-container{
+  padding-top: 1rem;
   display: flex;
   justify-content: center;
   color: white;
@@ -311,7 +383,7 @@ section{
   text-align: center;
 }
 
-.section-projects .project-container{
+.project-container{
   margin-top: 10vh;
   display: flex;
   justify-content: space-evenly;
@@ -374,7 +446,7 @@ section{
 }
 
 .back a{
-	color: black;
+	color: var(--gradient-2);
 	font-size: 1.5rem;
 }
 
@@ -385,13 +457,13 @@ section{
   margin-top: 1rem;
 }
 
-.project .front .image-1{
+.front .image-1{
   padding-top: 2.5rem;
   width: 50%;
   height: auto;
 }
 
-.project .front .image-2{
+.front .image-2{
   padding-top: 2.5rem;
   width: 50%;
   height: auto;
@@ -402,6 +474,8 @@ section{
   font-size: 0.75rem;
   padding-top: 1rem;
 }
+
+/* section projects ends here */
 
 /* Style for both "About Us" and "Members" headings */
 .about-us h1,
@@ -425,6 +499,7 @@ section{
   font-size: 16px;
   margin-bottom: 0;
 }
+
 /*
 canvas-envelope{
     

@@ -13,28 +13,54 @@
 </head>
 
 <body class="main-content">
-    <nav id="nav">
-        <div class="logo">
-            <h1>Dream Team</h1>
+        <div class="mobile-nav navbar" id="mobile-nav">
+            <div class="logo">
+                <h1>Dream Team</h1>
+            </div>
+            <input type="checkbox" id="nav-toggle" class="nav-toggle">
+            <nav class="mobile-nav-list">
+                <ul class="nav-list">
+                    <li class="menu-item-container">
+                        <a href=#0 class="menu-item" data-id="home">Home</a>
+                    </li>
+                    <li class="menu-item-container">
+                        <a href=#0 class="menu-item" data-id="about">About</a>
+                    </li>
+                    <li class="menu-item-container">
+                        <a href=#0 class="menu-item" data-id="team">Team</a>
+                    </li>
+                    <li class="menu-item-container">
+                        <a href=#0 class="menu-item" data-id="projects">Projects</a>
+                    </li>
+                </ul>
+            </nav>
+            <label for="nav-toggle" class="nav-toggle-label">
+                <span></span>
+            </label>
         </div>
-        <ul class="menu">
-            <li class="menu-item-container">
-                <a href=#0 class="menu-item" data-id="home">Home</a>
-            </li>
-            <li class="menu-item-container">
-                <a href=#0 class="menu-item" data-id="about">About</a>
-            </li>
-            <li class="menu-item-container">
-                <a href=#0 class="menu-item" data-id="team">Team</a>
-          </li>
-          <li class=" menu-item-container">
-                    <a href=#0 class="menu-item" data-id="projects">Projects</a>
-            </li>
-        </ul>
-    </nav>
+        <div class="desktop-nav navbar" id="desktop-nav">
+            <div class="logo">
+                <h1>Dream Team</h1>
+            </div>
+            <nav class="desktop-nav-list">
+                <ul class="nav-list">
+                    <li class="menu-item-container">
+                        <a href=#0 class="menu-item" data-id="home">Home</a>
+                    </li>
+                    <li class="menu-item-container">
+                        <a href=#0 class="menu-item" data-id="about">About</a>
+                    </li>
+                    <li class="menu-item-container">
+                        <a href=#0 class="menu-item" data-id="team">Team</a>
+                    </li>
+                    <li class=" menu-item-container">
+                        <a href=#0 class="menu-item" data-id="projects">Projects</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     <main>
         <section class="section-home active" id="home">
-            <img src="img/wireframe_cloud.PNG" />
             <script src="three.min.js"></script>
             <script src="postprocessing.min.js"></script>
             <div class="canvas-envelope">
@@ -153,7 +179,7 @@
                     in HTML, CSS, UX design, and project management. The result is a professional and engaging website.
                 </p>
             </div>
-            <img src="img/cloudforAbout.jpg" class="aboutCloud-img">
+            <!--<img src="img/cloudforAbout.jpg">-->
         </section>
 
         <section class="section-team" id="team">
@@ -209,7 +235,7 @@
             </div>
             <div class="team-member">
                 <img src="img/Sebastian_DreamTeam-300.gif" 
-                     srcset="img/Sebastian_DreamTeam-300.gif 320,
+                     srcset="img/Sebastian_DreamTeam-300.gif 320w,
                              img/Sebastian_DreamTeam-450.gif 768w,
                              img/Sebastian_DreamTeam-600.gif 1024w,"        
                      class="person-img">
@@ -283,7 +309,7 @@
                         <li><i>Saalihah Latiff</i></li>
                         <li><i>Madison Emshousen</i></li>
                         </ul>
-                       <button class="b1"><a class="menu-item" 
+                       <button class="b1"><a
 href="https://github.com/jaykeburger/UniMeet">Github</a></button>
                     </div>
                 </div>
@@ -314,7 +340,7 @@ href="https://github.com/jaykeburger/UniMeet">Github</a></button>
                         <li><i>Karthik Kallakuri</i></li>
                         <li><i>Dinh Thinh Ngo</i></li>
                         </ul>
-                        <button class="b2"><a class="menu-item" href="https://replit.com/@jorgeu/Dream-Team-Website-Prototype#index.html">Source Code</a></button>
+                        <button class="b2"><a href="https://replit.com/@jorgeu/Dream-Team-Website-Prototype#index.html">Source Code</a></button>
                     </div>
                 </div>
             </div>
@@ -322,7 +348,7 @@ href="https://github.com/jaykeburger/UniMeet">Github</a></button>
     </main>
 
     <script src="script.js"></script>
-    <script src="https://replit.com/public/js/replit-badge-v2.js" theme="dark" position="bottom-right"></script>
+    <script src="https://replit.com/public/js/replit-badge-v2.js" theme="dark" position="bottom-right" class="replit"></script>
 </body>
 
 </html>

@@ -43,17 +43,7 @@ section{
   z-index: 1;
 }
 
-.desktop-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.mobile-nav {
-  display: none;
-}
-
-.desktop-nav .logo { 
+.logo { 
   width: 50vw;
   font-size: 2rem;
   padding-left: 1rem;
@@ -61,8 +51,8 @@ section{
 
 /* Flowing text starts  */
 
-.desktop-nav .logo h1{
-  font-size: 2rem;
+.logo h1{
+  font-size: 2.5rem;
   --bg-size: 300%;
   --color-one: #22fcb0;
   --color-two: #2181fa;
@@ -79,7 +69,7 @@ section{
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .desktop-nav .logo {
+  .logo {
     animation: move-bg 12s linear infinite;
   }
   @keyframes move-bg {
@@ -92,7 +82,7 @@ section{
 
 /* underline styling start and color transition start */ 
 
-.desktop-nav-list .nav-list{
+.nav-list {
   display: flex;
   justify-content: end;
   align-items: center;
@@ -100,16 +90,17 @@ section{
   padding: 0 1rem 0 1rem;
 }
 
-.desktop-nav-list .nav-list .menu-item-container {
+.menu-item-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.desktop-nav .nav-list .menu-item-container hover{
+
+.menu-item-container hover{
   margin: 0 2rem;
 }
 
-.desktop-nav .nav-list .menu-item-container a {
+.menu-item-container a {
   color: white;
   text-align: center;
   
@@ -119,7 +110,7 @@ section{
   padding: 0.2rem 0;
 }
 
-.desktop-nav .nav-list .menu-item-container a::after {
+.menu-item-container a::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -129,40 +120,39 @@ section{
   background: var(--gradient-2);
   opacity: 0;
   transition: opacity 300ms, transform 300ms;
-}
-
-.desktop-nav .nav-list .menu-item-container a:hover::after,
-.desktop-nav .nav-list .menu-item-container a:focus::after {
-  opacity: 1;
-  transform: translate3d(0, 0.2rem, 0);
-}
-
-.desktop-nav .nav-list .menu-item-container a {
   overflow: hidden;
 }
 
-.desktop-nav .nav-list .menu-item-container a::after {
+.menu-item-container a::after {
   transform-origin: bottom left;
   transform: scaleX(0);
 }
 
-.desktop-nav .nav-list .menu-item-container a:hover::after, 
-.desktop-nav .nav-list .menu-item-container a:focus::after{
+.menu-item-container a:hover::after,
+.menu-item-container a:focus::after {
+  opacity: 1;
+  transform: translate3d(0, 0.2rem, 0);
   transform: scaleX(1);
 }
 
-.desktop-nav .nav-list .menu-item-container .menu-item{
+.menu-item{
   display: inline-block;
-  margin: 0 2vw 0 2vw;
+  margin: 0 2rem 0 2rem;
   cursor: pointer;
   color: white;
   font-size: 2rem;
 }
 
-.desktop-nav .desktop-nav-list .nav-list .menu-item-container .menu-item:focus {
+.menu-item:focus {
   font-weight: 1000;
   font-size: 2rem;
 }
+
+.nav-toggle {
+  display: none;
+}
+
+/* underline styling start and color transition end */
 
 .section-home{
   display: flex;
@@ -171,108 +161,115 @@ section{
   background-color: black;
 }
 
-/* underline styling start and color transition end */
+/* media query for mobile nav bar */ 
 
 @media (max-width: 768px){
 
-  .desktop-nav {
-    display: none;
+  .logo {
+    width: fit-content;
+    margin: auto;
+    padding: 0;
   }
 
-  .mobile-nav {
-    width: 100%;
-    display: grid;
-  }
-
-  /* Flowing text starts  */
-  
-  .mobile-nav .logo h1{
-    text-align: center;
-    font-size: 2.5rem;
-    --bg-size: 300%;
-    --color-one: #22fcb0;
-    --color-two: #2181fa;
-    background: linear-gradient(
-                  45deg,
-                  var(--color-one),
-                  var(--color-two),
-                  var(--color-one)
-                ) 0 0 / var(--bg-size) 100%;
-    color: transparent;
-    background-clip: text;
-    -webkit-background-clip: text;
-    animation: move-bg 6s infinite linear;
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .desktop-nav .logo {
-      animation: move-bg 12s linear infinite;
-    }
-    @keyframes move-bg {
-      to {
-        background-position: var(--bg-size) 0;
-      }
-    }
-  }
-
-  .mobile-nav-list {
+  .nav-list-container {
     display: none;
     position: fixed;
     background-color: black;
-    width: 50vw;
+    width: 0px;
     height: 100vh;
-    padding-top: 10vh;
-    transition: right 1s;
+    padding: 4rem 4rem 0 0;
+    transition-duration: 500ms;
+    transition-property: width;
   }
 
-  .nav-toggle {
-    display: none;
+  .nav-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
 
-  .nav-toggle:checked ~ nav {
-    display: block;
+  .nav-toggle:checked ~ .nav-list-container {
+    display: flex;
+    width: 200px;
   }
 
   .nav-toggle-label {
-    padding: 1vw 0 0 2vw;
-    font-size: 1.5rem;
+    padding: 0.25rem 0 0 1rem;
+    font-size: 2rem;
     position: absolute;
     color: white;
   }
 
   .nav-toggle-label span:after {
     content: "\2630"; /* hamburger icon */
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: white;
   }
 
   #nav-toggle:checked ~ .nav-toggle-label span:after{
     content: "\2715"; /* 'X' icon */
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: white;
   }
 
-  .mobile-nav .mobile-nav-list .nav-list .menu-item-container .menu-item{
+  .menu-item-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .menu-item-container hover{
+    margin: 0 2rem;
+  }
+  
+  .menu-item-container a {
+    color: white;
+    text-align: center;
+    
+    text-decoration: none;  
+    display: block;
+    position: relative;
+    padding: 0.2rem 0;
+  }
+  
+  .menu-item-container a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0.2rem;
+    background: var(--gradient-2);
+    opacity: 0;
+    transition: opacity 300ms, transform 300ms;
+    overflow: hidden;
+  }
+  
+  .menu-item-container a::after {
+    transform-origin: bottom left;
+    transform: scaleX(0);
+  }
+  
+  .menu-item-container a:hover::after,
+  .menu-item-container a:focus::after {
+    opacity: 1;
+    transform: translate3d(0, 0.2rem, 0);
+    transform: scaleX(1);
+  }
+  
+  .menu-item {
     display: inline-block;
-    margin: 0 0 0 1rem;
-    padding: 1rem 0 1rem 0;
+    margin: 0;
     cursor: pointer;
     color: white;
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
-
-  a {
-    text-decoration: none;
-}
-
-  a:hover {
-    text-decoration:none; 
-    cursor:pointer;  
-  }
-
-  .mobile-nav .mobile-nav-list .nav-list .menu-item-container .menu-item:focus {
+  
+  .menu-item:focus {
     font-weight: 1000;
-    font-size: 3.25rem;
+    font-size: 2.5rem;
   }
 }
 
@@ -392,20 +389,11 @@ section{
 }
 /* section team ends here */
 
-/* section team starts here */
+/* section projects starts here */
 
 .section-projects{  
   background: var(--gradient-2);
   height: fit-content;
-}
-
-.slogan-container{
-  padding-top: 1rem;
-  display: flex;
-  justify-content: center;
-  color: white;
-  font-size: 3rem;
-  text-align: center;
 }
 
 .project-container{

@@ -52,7 +52,7 @@ section{
 /* Flowing text starts  */
 
 .logo h1{
-  font-size: 2.5rem;
+  font-size: 2rem;
   --bg-size: 300%;
   --color-one: #22fcb0;
   --color-two: #2181fa;
@@ -196,7 +196,7 @@ section{
   }
 
   .nav-toggle-label {
-    padding: 0.25rem 0 0 1rem;
+    padding: 0 0 0 1rem;
     font-size: 2rem;
     position: absolute;
     color: white;
@@ -204,13 +204,13 @@ section{
 
   .nav-toggle-label span:after {
     content: "\2630"; /* hamburger icon */
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: white;
   }
 
   #nav-toggle:checked ~ .nav-toggle-label span:after{
     content: "\2715"; /* 'X' icon */
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: white;
   }
 
@@ -273,6 +273,41 @@ section{
   }
 }
 
+@media (max-width: 400px){
+
+  .nav-toggle-label {
+    top: -8px;
+    left: -5px;
+    font-size: 2rem;
+    position: absolute;
+    color: white;
+  }
+
+  .nav-toggle-label span:after {
+    content: "\2630"; /* hamburger icon */
+    font-size: 1.5rem;
+    color: white;
+  }
+
+  #nav-toggle:checked ~ .nav-toggle-label span:after{
+    content: "\2715"; /* 'X' icon */
+    font-size: 1.5rem;
+    color: white;
+  }
+
+  .logo { 
+    width: fit-content;
+    font-size: 1.5rem;
+    padding-left: 0;
+    display: flex;
+  }
+
+  .logo h1 {
+    font-size: 1.5rem;
+  }
+}
+
+
 /* navigation bar section ends here */
 
 /* section home ends here */
@@ -281,7 +316,7 @@ section{
 
 .section-about{
   background: var(--gradient-2);
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .section-heading{
@@ -293,13 +328,38 @@ section{
 }
 
 .about-description{
-  position: relative;
-  display: flex;
+  /*display: flex;*/
+  align-items: center;
   justify-content: center;
-  top: 25%;
-  padding: 0 2rem 0 2rem;
+  padding: 5rem 2rem 0 2rem;
   color: white;
   font-size: 1.5rem;
+}
+
+@media (max-width: 380px){
+  .about-description{
+    /*display: flex;*/
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 2rem 0 2rem;
+    color: white;
+    font-size: 1.25rem;
+  }
+}
+
+.code-coogs-link {
+  color: rgb(117, 228, 255);
+}
+
+.code-coogs-link:hover {
+  text-decoration: none;
+  cursor: pointer;
+  color: rgb(0, 185, 230);
+}
+
+.code-coogs-link:visited {
+  text-decoration: none;
+  color: rgb(0, 185, 230);
 }
 
 /* section about ends here */
@@ -312,6 +372,7 @@ section{
 }
 
 .section-heading {
+  padding-top: 4rem;
   color: white;
   font-size: 4rem;
   font-weight: bold;
@@ -323,15 +384,19 @@ section{
   flex-direction: row;
   align-items: space-evenly;
   justify-content: flex-start;
-  padding: 1rem;
+  padding: 4rem;
 }
 
 .team-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   flex-basis: 33.33%;
   padding: 1rem;
 }
 
 .team-member .name {
+  padding-top: 1rem;
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
@@ -339,7 +404,7 @@ section{
 }
 
 .person-img {
-  width: 100%;
+  width: 80%;
 }
 
 .team-member .description {
@@ -393,14 +458,21 @@ section{
 
 .section-projects{  
   background: var(--gradient-2);
-  height: fit-content;
+  height: 100vh;
+}
+
+@media (max-width: 768px){
+  .section-projects{  
+    background: var(--gradient-2);
+    height: fit-content;
+  }
 }
 
 .project-container{
-  margin-top: 10vh;
   display: flex;
   justify-content: space-evenly;
-  align-items: space-evently;
+  align-items: space-evenly;
+  flex-wrap: wrap;
 }
 
 .project{
@@ -444,30 +516,41 @@ section{
   transform: rotateY(180deg);
 }
 
-.back button{
+.back .project-button{
   position: relative;
-  display: default;
-  justify-content: center;
+  margin:auto;
+  display: flex;
   align-items: center;
+
+  margin-top: 1rem;
   background-color: white;
-  border-radius: 1rem;
+  border-style: solid;
+  border-color: black;
+
+  border-radius: 1.5rem;
+  padding: 0.5rem 1rem 0.5rem 0;
 }
 
-.back button:hover{
-	border-style: solid;
-	border-color: var(--gradient-2);
+.back a {
+  color: black;
+
+  text-decoration: none; 
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
-.back a{
-	color: var(--gradient-2);
-	font-size: 1.5rem;
+.back a:hover {
+  cursor: pointer;
 }
 
-.project-button{
-  margin-top: 1rem;
+.back a::after {
+  content: '';
 }
-.project-button {
-  margin-top: 1rem;
+
+.back .github-svg {
+  width: 4rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
 }
 
 .front .image-1{
@@ -484,8 +567,142 @@ section{
 }
 
 .back .project-list{
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   padding-top: 1rem;
+}
+
+.section-slogan {
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
+  color: white;
+}
+
+@media (max-width: 1024px){
+  .section-slogan {
+    font-size: 3rem;
+    color: white;
+  }
+  .section-heading h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px){
+  .section-slogan {
+    font-size: 2.5rem;
+  }
+  .section-heading h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px){
+  .section-slogan {
+    font-size: 1.5rem;
+  }
+  .section-heading h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 350px){
+  .section-slogan {
+    font-size: 1rem;
+  }
+  .section-heading h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px){
+  .project-container{
+    margin-top: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .project{
+    position: relative;
+    width: 60%;
+    transform-style: preserve-3d;
+    transition: all 1s ease;
+  }
+
+  .project .front{
+    position: absolute;
+    width: 75%;
+
+    backface-visibility: hidden;
+    overflow: hidden;
+    background-color: white;
+  }
+  
+  .project .back{
+    position: absolute;
+    width: 75%;
+
+    border-radius: 1rem;
+    backface-visibility: hidden;
+    background-color: white;
+    
+    transform: rotateY(180deg);
+  }
+  
+  .back .project-button{
+    margin-top: 3rem;
+    border-radius: 1.5rem;
+  }
+
+  .back .project-list{
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px){
+  .project-container{
+    margin-top: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .project{
+    position: relative;
+    width: 70%;
+    transform-style: preserve-3d;
+    transition: all 1s ease;
+  }
+
+  .project .front{
+    position: absolute;
+    width: 100%;
+
+    backface-visibility: hidden;
+    overflow: hidden;
+    background-color: white;
+  }
+  
+  .project .back{
+    position: absolute;
+    width: 100%;
+
+    border-radius: 1rem;
+    backface-visibility: hidden;
+    background-color: white;
+    
+    transform: rotateY(180deg);
+  }
+  
+  .back .project-button{
+    margin-top: 3rem;
+    border-radius: 1.5rem;
+  }
+
+  .back .project-list{
+    font-size: 0.75rem;
+  }
 }
 
 /* section projects ends here */

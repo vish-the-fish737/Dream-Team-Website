@@ -8,7 +8,7 @@ var navbars = document.querySelectorAll('.navbar');
 // Sections Active
 
 // "target" refers to element where the event occured & "dataset" refers to data-id element 
-
+/*
 function PageTransitions() {
   allSections.addEventListener('click', (e) => {
     const id = e.target.dataset.id;
@@ -39,17 +39,17 @@ function PageTransitions() {
   })
 };
 
-PageTransitions();
+PageTransitions();*/
 
-var hideScroll = window.pageYOffset;
+var hideScroll = window.scrollY;
 
 window.onscroll = function() {
-  var currentScrollPos = window.pageYOffset;
+  var currentScrollPos = window.scrollY;
   const checked = document.getElementById("nav-toggle").checked;
   
   navbars.forEach((nav) => {
     if(nav.style.display != "none"){
-      if (hideScroll > window.pageYOffset && checked == false) {
+      if (hideScroll > window.scrollY && checked == false) {
         nav.style.top = "0";
       } 
       else {
